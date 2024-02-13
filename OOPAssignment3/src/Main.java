@@ -10,7 +10,16 @@ public class Main {
         System.out.print("Enter student name: ");
         String name = scanner.next();
 
-        System.out.println("Welcome, " + name + "! You are at the University.");
+        StudentDAO studentDAO = new StudentDAO();
+        Student student = studentDAO.getStudentById(id);
+
+        if (student == null || !student.getName().equals(name)) {
+            System.out.println("Invalid student ID or name.");
+            System.out.println("You are not allowed to enter the University.");
+            return;
+        }
+
+        System.out.println("Welcome, " + student.getName() + "! You are at the University.");
 
         System.out.println("Do you want to enter the University? (yes/no)");
         String enterChoice = scanner.next();
